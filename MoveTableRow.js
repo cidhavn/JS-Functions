@@ -1,11 +1,13 @@
-//sample:
-//function MoveUp() { MoveTableRow("chkSelect", 2, true); }
-//function MoveDown() { MoveTableRow("chkSelect", 2, false); }
-//<table><tr><td><input type="checkbox" name="chkSelect" /></td></tr></table>
+// Move Table Row with JQuery
+// ----------------------------
+// sample:
+// function MoveUp() { MoveTableRow("chkSelect", 2, true); }
+// function MoveDown() { MoveTableRow("chkSelect", 2, false); }
+// <table><tr><td><input type="checkbox" name="chkSelect" /></td></tr></table>
 
-//checkboxsName: 選取checkbox name
-//parentCount: Row最上層<tr>階層數
-//isUp: [true = up][false = down]
+// checkboxsName: 選取checkbox name
+// parentCount: Row最上層<tr>階層數
+// isUp: [true = up][false = down]
 function MoveTableRow(checkboxsName, parentCount, isUp) {
     var checkboxs = document.getElementsByName(checkboxsName);
     var checkeds = [];
