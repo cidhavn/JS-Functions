@@ -1,8 +1,8 @@
 // Move Table Row with JQuery
 // ----------------------------
 // sample:
-// function MoveUp() { MoveTableRow("chkSelect", 2, true); }
-// function MoveDown() { MoveTableRow("chkSelect", 2, false); }
+// function MoveUp() { moveTableRow("chkSelect", 2, true); }
+// function MoveDown() { moveTableRow("chkSelect", 2, false); }
 // <table><tr><td><input type="checkbox" name="chkSelect" /></td></tr></table>
 // ----------------------------
 // property:
@@ -10,7 +10,7 @@
 // parentCount: Row最上層<tr>階層數
 // isUp: [true = up][false = down]
 // ----------------------------
-function MoveTableRow(checkboxsName, parentCount, isUp) {
+function moveTableRow(checkboxsName, parentCount, isUp) {
     var checkboxs = document.getElementsByName(checkboxsName);
     var checkeds = [];
     if (checkboxs != null) {
