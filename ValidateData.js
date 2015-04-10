@@ -39,28 +39,37 @@ function validateFileExtension(fileSrc, allowExtensions)
     return false;
 }
 // 檢查上傳檔案大小
-function validateFileSize(elementID, maxKB) {
-    var uploadFile = document.getElementById(elementID);
-
-    if (typeof (uploadFile.files) != "undefined") {
-        var size = parseFloat(uploadFile.files[0].size / 1024).toFixed(2);
-        return size <= maxKB;
+function validateFileSize(input, maxSize) {
+    if (typeof (input.files) != "undefined") {
+        if (input.files && input.files[0]) {
+            var size = parseFloat(input.files[0].size / 1024).toFixed(2);
+            return size <= maxSize;
+        }
     }
     else {
-        // alert("This browser does not support HTML5.");
+        alert("This browser does not support HTML5.");
     }
 
     return false;
 }
 // 預覽圖片
-function previewImage(imageSrc, width, height, previewContainerID) {
-    var img = document.createElement("img");
+function previewImage(input, width, height, previewContainerID) {
+    if (typeof (input.files) != "undefined") {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-    if (width > 0) { img.width = width; }
-    if (height > 0) { img.height = height; }
+            reader.onload = function (e) {
+                var img = document.createElement("img");
+                if (width > 0) { img.width = width; }
+                if (height > 0) { img.height = height; }
+                img.src = e.target.result;
+                document.getElementById(previewContainerID).appendChild(img);
+            }
 
-    img.onload = function () {
-        document.getElementById(previewContainerID).appendChild(img);
-    };
-    img.src = imageSrc;   
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    else {
+        alert("This browser does not support HTML5.");
+    }    
 }
