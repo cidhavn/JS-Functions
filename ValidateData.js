@@ -26,19 +26,22 @@ function validatePhone(number) {
 // allowExtensions: "jpg, png"
 function validateFileExtension(fileSrc, allowExtensions)
 {
-    var extension = (fileSrc.split("\\").pop()).split(".").pop().toLowerCase();
-    var allow = allowExtensions.split(",");
+    if (fileSrc && fileSrc.length > 0) {
+        var extension = (fileSrc.split("\\").pop()).split(".").pop().toLowerCase();
+        var allow = allowExtensions.split(",");
 
-    if (allow != null && allow.length > 0)
-    {
-        for (var i = 0; i < allow.length; i++) {
-            if (extension == allow[i]) { return true; }
+        if (allow != null && allow.length > 0) {
+            for (var i = 0; i < allow.length; i++) {
+                if (extension == allow[i]) { return true; }
+            }
         }
     }
     
     return false;
 }
 // 檢查上傳檔案大小
+// input: <input type="file" />
+// maxSize: KB
 function validateFileSize(input, maxSize) {
     if (typeof (input.files) != "undefined") {
         if (input.files && input.files[0]) {
@@ -53,9 +56,13 @@ function validateFileSize(input, maxSize) {
     return false;
 }
 // 預覽圖片
+// input: <input type="file" />
+// width: 預覽圖片寬度[0=Auto]
+// height: 預覽圖片高度[0=Auto]
+// previewContainerID: 預覽圖片容器，ex: <div id="previewImg"></div>
 function previewImage(input, width, height, previewContainerID) {
     var container = document.getElementById(previewContainerID);
-    while (container.firstChild) { container.removeChild(container.firstChild); } //清空
+    while (container.firstChild) { container.removeChild(container.firstChild); } //clear container
 
     if (typeof (input.files) != "undefined") {
         if (input.files && input.files[0]) {
@@ -68,7 +75,7 @@ function previewImage(input, width, height, previewContainerID) {
                 container.appendChild(img);
             };
             img.onerror = function () {
-                container.innerHTML = "Not a valid file.";
+                container.innerHTML = "Please upload image file.";
             };
             img.src = url.createObjectURL(input.files[0]);
 
