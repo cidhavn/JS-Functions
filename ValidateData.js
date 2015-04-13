@@ -54,22 +54,37 @@ function validateFileSize(input, maxSize) {
 }
 // 預覽圖片
 function previewImage(input, width, height, previewContainerID) {
+    var container = document.getElementById(previewContainerID);
+    while (container.firstChild) { container.removeChild(container.firstChild); } //清空
+
     if (typeof (input.files) != "undefined") {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                var img = document.createElement("img");
+            // solution 1
+            var url = window.URL || window.webkitURL;
+            var img = new Image();
+            img.onload = function () {
                 if (width > 0) { img.width = width; }
                 if (height > 0) { img.height = height; }
-                img.src = e.target.result;
-                document.getElementById(previewContainerID).appendChild(img);
-            }
+                container.appendChild(img);
+            };
+            img.onerror = function () {
+                container.innerHTML = "Not a valid file.";
+            };
+            img.src = url.createObjectURL(input.files[0]);
 
-            reader.readAsDataURL(input.files[0]);
+            // solution 2
+            //var reader = new FileReader();
+            //reader.onload = function (e) {
+            //    var img = new Image();
+            //    img.src = e.target.result;
+            //}
+            //reader.readAsDataURL(input.files[0]);
+        }
+        else {
+            container.innerHTML = "Please select file.";
         }
     }
     else {
-        alert("This browser does not support HTML5.");
+        container.innerHTML = "This browser does not support HTML5.";
     }    
 }
