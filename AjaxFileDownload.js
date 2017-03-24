@@ -1,11 +1,11 @@
 /**
-* iframe Ajax Download
-*
-* 缺點: 無法偵測下載結束和錯誤
-*
-* @param {string} url
-* @param {object} data
-*/
+ * iframe Ajax Download
+ *
+ * 缺點: 無法偵測下載結束和錯誤
+ *
+ * @param {string} url
+ * @param {object} data
+ */
 function iframeAjaxDownload(url, data) {
     if ($('#downloadContainer').html()) {
         $('#downloadContainer').remove();
@@ -40,11 +40,11 @@ function iframeAjaxDownload(url, data) {
 }
 
 /**
-* XMLHttpRequest Ajax Download
-*
-* @param {string} url
-* @param {object} data
-*/
+ * XMLHttpRequest Ajax Download
+ *
+ * @param {string} url
+ * @param {object} data
+ */
 function ajaxDownload(url, data) {
     // 顯示 Loading
     var htmlArray = [];
@@ -133,11 +133,11 @@ function ajaxDownload(url, data) {
 }
 
 /**
-* JQuery Ajax Download
-* 
-* @param {string} url
-* @param {object} data
-*/
+ * JQuery Ajax Download
+ * 
+ * @param {string} url
+ * @param {object} data
+ */
 function jqAjaxDownload(url, data) {
     $.ajax({
         url: url,
