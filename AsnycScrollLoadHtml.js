@@ -21,8 +21,10 @@ function asnycScrollLoadHtml(url, data, nearBottomHeight, reloadFunc) {
 
     setData();
 
-    // 判斷到底 => $(document).scrollTop() + $(window).innerHeight() == $(document).height()
-    // IE9 以下不支援 $(document).on('scroll', function () {});
+    // Note:
+    // 1. 判斷到底 => $(document).scrollTop() + $(window).innerHeight() == $(document).height()
+    // 2. Browser 未最大化 window.innerHeight > $(window).innerHeight()
+    // 3. IE9 以下不支援 $(document).on('scroll', function () {});
     
     $(window).on('scroll', function () {
         if ($(document).scrollTop() + windowHeight > docHeight - nearBottomHeight) {
