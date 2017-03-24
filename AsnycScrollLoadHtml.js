@@ -7,7 +7,7 @@
  * @param {function} reloadFunc: AJAX 取得資料後的動作
  *
  * Sample: asnycScrollLoadHtml('http://www.api.com.tw/test',
- *                             { id = 1 },
+ *                             { id: 1 },
  *                             200,
  *                             function (data) {
  *                                 $('#content').append(data);
@@ -21,8 +21,9 @@ function asnycScrollLoadHtml(url, data, nearBottomHeight, reloadFunc) {
 
     setData();
 
-    $(document).on('scroll', function () {
-        if ($(document).scrollTop() + windowHeight > docHeight - nearBottomHeight) {
+    // IE9 以下不支援 $(document).on('scroll', function () {});
+    $(window).on('scroll', function () {
+        if ($(window).scrollTop() + windowHeight > docHeight - nearBottomHeight) {
             clearTimeout(timeout);
 
             timeout = setTimeout(function () {
