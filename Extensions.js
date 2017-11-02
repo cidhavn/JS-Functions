@@ -6,7 +6,6 @@
  */
 function mathRound(value, decimalPlace) {
     var size = Math.pow(10, decimalPlace);
-
     return (value * size) / size;
 }
 
@@ -16,8 +15,18 @@ function mathRound(value, decimalPlace) {
  * @param {date} startDate: 開始日
  * @param {date} endDate: 結束日
  */
-function dateDiffDays(startDate, endDate) {
-    var timeDiff = Math.abs(startDate.getTime() - endDate.getTime());
-
+Date.prototype.diffDays = function(date) {
+    var timeDiff = Math.abs(this.getTime() - date.getTime());
     return Math.ceil(timeDiff / (1000 * 3600 * 24));
 }
+
+/**
+ * 取得日期間隔天數
+ *
+ * @param {date} startDate: 開始日
+ * @param {date} endDate: 結束日
+ */
+Date.prototype.addDays = function(days) {
+    this.setDate(this.getDate() + parseInt(days));
+    return this;
+};
