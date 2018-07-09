@@ -96,8 +96,10 @@ function ajaxDownload(url, data) {
                     'text/plain': '.txt',
                     'image/png': '.png',
                     'application/msword': '.doc',
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '.docx',
                     'application/pdf': '.pdf',
                     'application/vnd.ms-excel': '.xls',
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
                     'application/vnd.ms-powerpoint': '.ppt',
                     'application/zip': '.zip'
                 };
@@ -165,8 +167,10 @@ function jqAjaxDownload(url, data) {
                 'text/plain': '.txt',
                 'image/png': '.png',
                 'application/msword': '.doc',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '.docx',
                 'application/pdf': '.pdf',
                 'application/vnd.ms-excel': '.xls',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
                 'application/vnd.ms-powerpoint': '.ppt',
                 'application/zip': '.zip'
             };
